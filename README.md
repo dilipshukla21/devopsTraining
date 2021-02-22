@@ -21,3 +21,5 @@ Now open command prompt
 3. cd spring-boot-rest-2
 4. Execute - mvnw clean package
 5. start the server - java -jar target\spring-boot-rest-2-0.0.1-SNAPSHOT.jar
+
+Change to start build
