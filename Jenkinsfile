@@ -27,6 +27,13 @@ pipeline {
                 echo 'Building App with maven'
             }
         }
+	stage('Kill previous deploy ment') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                    sh "fuser -k 8083/tcp"
+                }
+            }
+        }
         stage('Deploy') {
             steps {
                 sh "JENKINS_NODE_COOKIE=dontKillMe nohup java -jar ./target/spring-boot-rest-2-0.0.1-SNAPSHOT.jar &"
