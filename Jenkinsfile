@@ -12,6 +12,7 @@ pipeline {
         }
         stage('Quality Check') {
             steps {
+		sh "mvn clean test"    
                 echo 'QA verified'
             }
         }
