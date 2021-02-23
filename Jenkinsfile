@@ -29,8 +29,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-		sh "java -jar target/spring-boot-rest-2-0.0.1-SNAPSHOT.jar &"
-                echo 'Deployment done'
+                sh "JENKINS_NODE_COOKIE=dontKillMe nohup java -jar ./target/spring-boot-rest-2-0.0.1-SNAPSHOT.jar &"
+		echo 'Deployment done'
             }
         }
         stage('Post Deployment Check') {
