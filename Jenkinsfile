@@ -10,18 +10,20 @@ pipeline {
                 echo 'Checkout source code from git'
             }
         }
-        stage('Quality Check') {
-            steps {
-		sh "mvn clean test"    
-                echo 'QA verified'
-            }
-        }
-        stage('Security Check') {
-            steps {
-		dependencyCheck additionalArguments: '--scan=. --format=HTML', odcInstallation: 'OWASP-Dependency-Check'
-                echo 'All security checks done'
-            }
-        }
+	    parallel {
+	   	 stage('Quality Check') {
+		    steps {
+			sh "mvn clean test"    
+			echo 'QA verified'
+		    }
+		}
+		stage('Security Check') {
+		    steps {
+			dependencyCheck additionalArguments: '--scan=. --format=HTML', odcInstallation: 'OWASP-Dependency-Check'
+			echo 'All security checks done'
+		    }
+		}
+	}
         stage('Build') {
             steps {
 				sh "mvn clean install"
