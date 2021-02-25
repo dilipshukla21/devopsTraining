@@ -10,7 +10,7 @@ pipeline {
                 echo 'Checkout source code from git'
             }
         }
-	    parallel {
+	stage('Test')    parallel {
 	   	 stage('Quality Check') {
 		    steps {
 			sh "mvn clean test"    
@@ -23,7 +23,7 @@ pipeline {
 			echo 'All security checks done'
 		    }
 		}
-	}
+	}}
         stage('Build') {
             steps {
 				sh "mvn clean install"
