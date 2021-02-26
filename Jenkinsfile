@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Post Deployment Check') {
             steps {
-                sh "/usr/local/bin/newman run Student_Training.postman_collection.json -r html,cli"
+                sh "/home/e5569384/post-deploy.sh"
 		echo 'All deployment check done'
             }
         }
