@@ -14,7 +14,7 @@ pipeline {
 		parallel {
 		 stage('Quality Check') {
 		    steps {
-			sh "mvn clean test"    
+			sh "mvn test"    
 			echo 'QA verified'
 		    }
 		}
