@@ -28,7 +28,7 @@ pipeline {
 	}
         stage('Build') {
             steps {
-				sh "mvn clean install"
+		sh "mvn clean install"
                 echo 'Building App with maven'
             }
         }
@@ -47,6 +47,7 @@ pipeline {
         }
         stage('Post Deployment Check') {
             steps {
+		    sleep time: 1000, unit: 'MILLISECONDS'
                 sh "/usr/local/bin/newman run Student_Training.postman_collection.json -r html,cli"
 		echo 'All deployment check done'
             }
